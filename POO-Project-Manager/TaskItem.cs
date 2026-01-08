@@ -13,7 +13,7 @@ public class TaskItem
     public TaskItem(int id, string title)
     {
         Id=id;
-        Title=titlu;
+        Title=title;
         Status=TaskStatus.ToDo;
     }
 }
