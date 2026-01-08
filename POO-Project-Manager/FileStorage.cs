@@ -1,28 +1,52 @@
 using System.IO;
 using System.Text.Json;
+using System.Collections.Generic;
 public class FileStorage
 {
-    private const string FileName="project.json";
-    public void Save(Project project)
+    private const string ProjectFile="projects.json";
+    private const string UserFile="users.json";
+    public void SaveProjects(List<Project> projects)
     {
-        string json=JsonSerializer.Serialize(project);
-        File.WriteAllText(FileName, json);
+        string json=JsonSerializer.Serialize(projects);
+        File.WriteAllText(ProjectFile, json);
     }
-    public Project Load()
+    public List<Project> LoadProjects()
     {
-        if (!File.Exists(FileName))
+        if (!File.Exists(ProjectFile))
         {
-            return new Project();
+            return new List<Project>();
         }
         try 
         {
-            string json=File.ReadAllText(FileName);
-            Project project=JsonSerializer.Deserialize<Project>(json); 
-            return project ?? new Project();
+            string json=File.ReadAllText(ProjectFile);
+            Project project=JsonSerializer.Deserialize<List<Project>>(json); 
+            return project ?? new List<Project>();
         }
         catch
         {
-            return new Project();
+            return new List<Project>();
+        }
+    }
+    public void SaveUsers(List<User> users)
+    {
+       string json=JsonSerializer.Serialize(users);
+       File.WriteAllText(UserFile, json); 
+    }
+    public List<User> LoadProjects()
+    {
+        if (!File.Exists(UserFile))
+        {
+            return new List<User>();
+        }
+        try 
+        {
+            string json=File.ReadAllText(UserFile);
+            User user=JsonSerializer.Deserialize<List<User>>(json); 
+            return user ?? new List<User>();
+        }
+        catch
+        {
+            return new List<User>();
         }
     }
 }
