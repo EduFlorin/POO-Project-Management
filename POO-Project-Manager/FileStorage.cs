@@ -19,7 +19,7 @@ public class FileStorage
         try 
         {
             string json=File.ReadAllText(ProjectFile);
-            Project project=JsonSerializer.Deserialize<List<Project>>(json); 
+            List<Project> project=JsonSerializer.Deserialize<List<Project>>(json); 
             return project ?? new List<Project>();
         }
         catch
@@ -32,7 +32,7 @@ public class FileStorage
        string json=JsonSerializer.Serialize(users);
        File.WriteAllText(UserFile, json); 
     }
-    public List<User> LoadProjects()
+    public List<User> LoadUsers()
     {
         if (!File.Exists(UserFile))
         {
@@ -41,7 +41,7 @@ public class FileStorage
         try 
         {
             string json=File.ReadAllText(UserFile);
-            User user=JsonSerializer.Deserialize<List<User>>(json); 
+            List<User> user=JsonSerializer.Deserialize<List<User>>(json); 
             return user ?? new List<User>();
         }
         catch
