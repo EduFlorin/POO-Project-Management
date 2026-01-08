@@ -1,6 +1,12 @@
+using System.Collections.Generic;
 public class Project
 {
+    public string Name {get; set;}
     public List<TaskItem> Tasks {get; set;} = new();
+    public Project(string name)
+    {
+        Name=name;
+    }
     public void AddTask(TaskItem task)
     {
         Tasks.Add(task);
