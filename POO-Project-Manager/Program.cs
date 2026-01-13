@@ -34,8 +34,7 @@ class Program
 
         authService = new AuthenticationService(users);
         projectService = new ProjectService(projects);
-
-        // --- Login ---
+        
         Console.Write("\nUsername login: ");
         string loginUser = Console.ReadLine()!;
         Console.Write("Password login: ");
@@ -54,8 +53,7 @@ class Program
             ManagerMenu();
         else
             MemberMenu(loggedUser.Username);
-
-        // Salvare proiecte
+        
         FileService.SaveProjects(projects, "projects.json");
     }
 
