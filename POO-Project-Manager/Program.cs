@@ -9,11 +9,8 @@ class Program
 
     public void Run()
     {
-        // Încărcare proiecte
         projects = FileService.LoadProjects("projects.json");
-
-        // --- Introducere angajați ---
-        Console.Write("Număr angajati: ");
+        Console.Write("Numar angajati: ");
         int n = int.Parse(Console.ReadLine()!);
 
         for (int i = 0; i < n; i++)
