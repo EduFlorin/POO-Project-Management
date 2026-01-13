@@ -11,4 +11,8 @@ public class Project
     {
         Tasks.Add(task);
     }
+    public override string ToString()
+    {
+        return $"{Name}, {TaskItem} tasks";
+    }
 }
