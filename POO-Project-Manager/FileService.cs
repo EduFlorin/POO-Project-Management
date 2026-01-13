@@ -12,21 +12,21 @@ public static class FileService
         }
         catch
         {
-            Console.Writeline("Eroare la salvarea proiectelor!");
+            Console.WriteLine("Eroare la salvarea proiectelor!");
         }
     }
     public static List<Project> LoadProjects(string fileName)
     {
         try
         {
-        if (!File.Exists(ProjectFile))
+        if (!File.Exists(fileName))
             return new List<Project>();
         string json= File.ReadAllText(fileName);
         return JsonSerializer.Deserialize<List<Project>>(json) ?? new List<Project>();
         }
         catch
         {
-            Conslole.Writeline("Eroare la incarcarea proiectelor!");
+            Console.WriteLine("Eroare la incarcarea proiectelor!");
             return new List<Project>();
         }
         
