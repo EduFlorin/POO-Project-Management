@@ -25,16 +25,16 @@ public class ProjectService
         projects[projectIndex].AddTask(task);
         Console.WriteLine($"Task adaugat: {task.Title}");
     }
-
     public void ShowProjects()
     {
         for (int i = 0; i < projects.Count; i++)
         {
-            Console.WriteLine($"{i}. {projects[i].Name}");
+            Console.WriteLine($"{i}. {projects[i]}");
             foreach (var task in projects[i].Tasks)
             {
-                Console.WriteLine($" - {task.Title} [{task.Status}] (Asignat: {task.AssignedTo})");
+                Console.WriteLine($" - {task} (Asignat: {task.AssignedTo})");
             }
         }
     }
+
 }
