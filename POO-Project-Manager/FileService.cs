@@ -1,9 +1,9 @@
+﻿namespace POO_Project_Manager;
 using System.IO;
 using System.Text.Json;
 using System.Collections.Generic;
-public static class FileService
-{
-    public static void SaveProjects(List<Project> projects, string fileName)
+public class FileService
+{ public static void SaveProjects(List<Project> projects, string fileName)
     {
         try
         {
@@ -19,10 +19,10 @@ public static class FileService
     {
         try
         {
-        if (!File.Exists(fileName))
-            return new List<Project>();
-        string json= File.ReadAllText(fileName);
-        return JsonSerializer.Deserialize<List<Project>>(json) ?? new List<Project>();
+            if (!File.Exists(fileName))
+                return new List<Project>();
+            string json= File.ReadAllText(fileName);
+            return JsonSerializer.Deserialize<List<Project>>(json) ?? new List<Project>();
         }
         catch
         {
