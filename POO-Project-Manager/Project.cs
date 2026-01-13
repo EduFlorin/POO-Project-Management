@@ -2,7 +2,7 @@ using System.Collections.Generic;
 public class Project
 {
     public string Name {get; set;}
-    public List<TaskItem> Tasks {get; set;} = new();
+    public List<TaskItem> Tasks {get; } = new();
     public Project(string name)
     {
         Name=name;
@@ -13,6 +13,6 @@ public class Project
     }
     public override string ToString()
     {
-        return $"{Name}, {TaskItem} tasks";
+        return $"{Name}, ({Tasks.Count} tasks)";
     }
 }
