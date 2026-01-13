@@ -18,4 +18,9 @@ public class TaskItem
         Status=TaskStatus.ToDo;
         AssignedTo="";
     }
+
+    public override string ToString()
+    {
+        return $"Task {Id}: {Title} - {Status}";
+    }
 }
