@@ -61,7 +61,7 @@ class Program
     {
         while (true)
         {
-            Console.WriteLine("\n1. Creează proiect  2. Adaugă task  3. Vezi proiecte  0. Ieșire");
+            Console.WriteLine("\n1. Creează proiect  2. Adaugă task  3. Vezi proiecte  0. Iesire");
             string opt = Console.ReadLine()!;
 
             if (opt == "0") break;
@@ -93,26 +93,78 @@ class Program
             }
             else
             {
-                Console.WriteLine("Opțiune invalidă!");
+                Console.WriteLine("Optiune invalidă!");
             }
         }
     }
 
     void MemberMenu(string username)
+{
+    while (true)
     {
         Console.WriteLine("\nTaskurile tale:");
+        int count = 0;
+
         foreach (var p in projects)
         {
             foreach (var t in p.Tasks)
             {
                 if (t.AssignedTo == username)
                 {
-                    Console.WriteLine($"{p.Name} - {t.Title} [{t.Status}]");
+                    Console.WriteLine($"{count}. {p.Name} - {t.Title} [{t.Status}]");
+                    count++;
                 }
             }
         }
-    }
 
+        if (count == 0)
+        {
+            Console.WriteLine("Nu ai task-uri asignate.");
+        }
+
+        Console.WriteLine("\nOpțiuni:");
+        Console.WriteLine("1. Marchează un task ca InProgress");
+        Console.WriteLine("2. Marchează un task ca Done");
+        Console.WriteLine("0. Ieșire");
+
+        string opt = Console.ReadLine()!;
+        if (opt == "0") break;
+
+        if (opt == "1" || opt == "2")
+        {
+            Console.Write("Alege numărul task-ului: ");
+            if (!int.TryParse(Console.ReadLine(), out int taskNumber) || taskNumber < 0 || taskNumber >= count)
+            {
+                Console.WriteLine("Număr task invalid!");
+                continue;
+            }
+            
+            int current = 0;
+            foreach (var p in projects)
+            {
+                foreach (var t in p.Tasks)
+                {
+                    if (t.AssignedTo == username)
+                    {
+                        if (current == taskNumber)
+                        {
+                            if (opt == "1") t.Status = TaskStatus.InProgress;
+                            else t.Status = TaskStatus.Done;
+
+                            Console.WriteLine($"Task-ul '{t.Title}' a fost actualizat la status: {t.Status}");
+                            FileService.SaveProjects(projects, "projects.json"); // salvare automată
+                        }
+                        current++;
+                    }
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("Optiune invalidă!");
+        }
+    }
+}
     static void Main()
     {
         new Program().Run();
